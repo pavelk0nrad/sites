@@ -73,8 +73,9 @@ h3{
   }
 
   .item2 a {
+    color: #6F61C0;
     text-decoration: none;
-    width: 20ch;
+    width: 30ch;
     padding: 20px;
     transition: background-color 0.3s ease, filter 0.3s ease
   }
