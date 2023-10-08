@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>75 Lines of Code</title>
+    <title>Creation of Digital Color Entity</title>
     <style>
         body{
             background-color: #FDF695;
@@ -17,59 +17,55 @@
             width: 500px;
             height: 500px;
             background-color: white;
-            transition: background-color 0.3s ease-out;
             grid-template-columns: repeat(500, 1px);
             grid-template-rows: repeat(500, 1px);
         }
         .color1{
             background-color: #C930A5;
-            transition: background-color 0.2s ease-out;
         }
         .color2{
             background-color: #FDF695;
-            transition: background-color 5s ease-out;
         }
         .color3{
             background-color: #FDF695;
-            transition: background-color 2s ease-out;
         }
         .color4{
             background-color: #B756FC;
-            transition: background-color 3s ease-out;
         }
         .color5{
             background-color: #C9B030;
-            transition: background-color 2s ease-out;
         }
     </style>
 </head>
-<body><div class="container"><div class="start"></div></div>
+<body>
+    <div class="container">
+        <div class="start"></div>
+    </div>
     <script>
-let start = document.querySelector('.start');
-let gridSize = { rows: 500, cols: 500 };
-let divs = [];
-// Vytvoření mřížky
-for (let row = 0; row < gridSize.rows; row++) {
-  for (let col = 0; col < gridSize.cols; col++) {
-    let newDiv = document.createElement('div');
-    let randomColorClassNumber = Math.floor(Math.random() * 5) + 1;
-    let className = 'color' + randomColorClassNumber;
-    newDiv.className = className;
-    divs.push(newDiv); // Přidání divu do pole pro snadný přístup později
-    start.appendChild(newDiv);
-  }
-}
-// Funkce pro náhodnou změnu barvy jednoho náhodně vybraného divu
-function randomizeSingleColor() {
-  let randomIndex = Math.floor(Math.random() * divs.length); // Náhodný index divu
-  let randomDiv = divs[randomIndex];
-  let randomColorClassNumber = Math.floor(Math.random() * 5) + 1;
-  let className = 'color' + randomColorClassNumber;
-  randomDiv.className = className;
-  console.log(`Změna barvy divu na indexu ${randomIndex} na třídu ${className}`);
-}
-// Nastavení intervalu, ve kterém se bude měnit barva jednoho náhodně vybraného divu (např. každých 100 ms)
-setInterval(randomizeSingleColor, 100);
+        const start = document.querySelector('.start');
+        const gridSize = { rows: 500, cols: 500 };
+        
+        // Vytvoření mřížky
+        for (let row = 0; row < gridSize.rows; row++) {
+            for (let col = 0; col < gridSize.cols; col++) {
+                const newDiv = document.createElement('div');
+                let randomColorClassNumber = Math.floor(Math.random() * 5) + 1;
+                let className = 'color' + randomColorClassNumber;
+                newDiv.className = className;
+                start.appendChild(newDiv);
+            }
+        }
+
+        // Funkce pro náhodnou změnu barvy jednoho divu
+        function randomizeSingleColor() {
+            const randomDiv = start.children[Math.floor(Math.random() * start.children.length)];
+            let randomColorClassNumber = Math.floor(Math.random() * 5) + 1;
+            let className = 'color' + randomColorClassNumber;
+            randomDiv.className = className;
+        }
+
+        // Nastavení intervalu pro spuštění funkce pro změnu barvy každé buňky
+        setInterval(randomizeSingleColor, 10); 
     </script>
 </body>
 </html>
